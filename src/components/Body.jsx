@@ -1,8 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from './NavBar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { BASE_URL } from '../utils/constants'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUser } from '../utils/userSlice'
 
 export const Body = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userData = useSelector((store) => store.user)
+
+const fetchUser = async () => {
+  try{
+const res = await axios.get(BASE_URL + "/profile/view", {
+  withCredentials: true,
+})
+dispatch(addUser(res.data))
+
+  }
+  catch(err) {
+    navigate("/login")
+    console.log(err)
+  }
+}
+
+useEffect(() => {
+  if(!userData) {
+    fetchUser();
+
+  }
+},[])
+
   return (
     
     <div data-theme="dark" className="min-h-screen">

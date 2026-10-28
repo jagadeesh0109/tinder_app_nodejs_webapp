@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("jaga@123");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleLogin = async () => {
     try {
@@ -20,11 +21,13 @@ const Login = () => {
        {withCredentials: true}
     
     );
+    console.log("2. API success", res);
     //calling the action by dispatching the action
     dispatch(addUser(res.data))
     navigate("/")
     } catch (err) {
-      console.error(err);
+      console.log("error block")
+      setError(err?.response?.data || "Login failed");
     }
   };
 
@@ -56,6 +59,7 @@ const Login = () => {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className="text-red-600">{error}</p>
           <div className="flex justify-center">
             <button className="btn btn-neutral mt-5" onClick={handleLogin}>
               Login
