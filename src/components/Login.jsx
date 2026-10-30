@@ -21,12 +21,11 @@ const Login = () => {
        {withCredentials: true}
     
     );
-    console.log("2. API success", res);
     //calling the action by dispatching the action
     dispatch(addUser(res.data))
     navigate("/")
     } catch (err) {
-      console.log("error block")
+      
       setError(err?.response?.data || "Login failed");
     }
   };

@@ -29,14 +29,16 @@ const NavBar = () => {
 
   return (
  
-<div className="navbar bg-base-100 shadow-sm">
+<div className="navbar bg-base-200 shadow-sm">
   <div className="flex-1">
     <Link to ="/" className="btn btn-ghost text-xl">devTinderWeb</Link>
   </div>
   <div className="flex gap-2">
   {user && (
+    <>
+   <span>Welcome  {user.firstName}</span> 
  <div className="dropdown dropdown-end">
-  <p>Welcome {user.firstName}</p>
+ 
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar mx-8">
         <div className="w-10 rounded-full">
           <img
@@ -53,10 +55,11 @@ const NavBar = () => {
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><a >Settings</a></li>
+       <li><Link to="/connections"> Connections </Link></li> 
         <li><a onClick={handleLogout}> Logout</a></li>
       </ul>
     </div>
+    </>
   )}
    
   </div>
