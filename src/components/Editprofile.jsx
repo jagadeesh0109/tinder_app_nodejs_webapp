@@ -13,6 +13,7 @@ const [emailId, setEmail] = useState(user.emailId)
 const [error, setError] = useState("")
 const dispatch = useDispatch()
 const [showToast, setshowToast] = useState(false)
+const [isUpdateProfile, setUpdateProfile] = useState(true)
 
 const saveProfile = async () => {
   try {
@@ -75,7 +76,7 @@ const saveProfile = async () => {
         </fieldset>
       </div>
     </div>
-<Usercard user={{firstName, lastName, emailId}} />
+<Usercard user={{firstName, lastName, emailId, isUpdateProfile}} />
     </div>
     
 {showToast && (<div className="toast toast-top toast-center">

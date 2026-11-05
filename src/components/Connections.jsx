@@ -6,7 +6,6 @@ import { addConnections } from "../utils/connectionSlice";
 
 const Connections = () => {
   const connection = useSelector((store) => store.connections);
-  console.log("ln9-", connection);
   const dispatch = useDispatch();
 
 
